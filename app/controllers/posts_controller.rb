@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   before_action :collect_post
 
   def index
-    render json: @post
+    render json: @posts
   end
 
   def create
-    @post = Post.new(permitted_params)
+    @post = @posts.build(permitted_params)
 
     respond_to do |format|
       if @post.save
@@ -17,10 +17,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    render json: @posts.find(params[:id])
+  end
+
   private
 
   def collect_post
-    @post = Post.all
+    @posts = current_user.posts.all
   end
 
   def permitted_params

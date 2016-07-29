@@ -3,6 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   before_action :add_headers
+  before_action :authenticate_user!
+
+  # before_action :validate_user, unless: :devise_controller?
+
+  # def validate_user
+  #     respond_to do |format|
+  #       if user_signed_in?
+  #         format.json { render json: { message: 'Success' } }
+  #       else
+  #         format.json { render json: 'User session is not created' }
+  #         format.html { redirect_to '/users/sign_in'}
+  #       end
+  #     end
+  # end
 
   private
 

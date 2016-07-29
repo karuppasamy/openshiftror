@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  belongs_to :user
+
   validates :image, :description, :amount_expected, presence: true
 
   default_scope { where(status: true).order(created_at: :desc) }
